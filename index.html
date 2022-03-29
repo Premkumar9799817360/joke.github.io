@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>JOKE APP</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body {
+            background-color: fuchsia;
+        }
+
+        .container {
+            border: 2px solid black;
+            width: 448px;
+            border-radius: 20px;
+            height: 310px;
+            background-color: deeppink;
+            text-align: center;
+            padding: 38px 96px;
+            margin: 100px 425px;
+            justify-content: center;
+            box-shadow: 0px 0px 20px 7px
+        }
+
+        h3 {
+
+            font-size: 32px;
+            font-weight: bold;
+            margin: 2p;
+            margin: -46px 11px;
+            padding: -7px 9px;
+            text-align: right;
+        }
+
+
+        .btn {
+
+            background: yellow;
+            width: 166px;
+            padding: 8px;
+            border-radius: 9px;
+            box-shadow: 0px 3px 14px 4px;
+            font-size: 25px;
+            font-family: cursive;
+            font-weight: bold;
+            margin: -44px 4px;
+        }
+
+        .btn:hover {
+            background-color: antiquewhite;
+        }
+
+        h2 {
+
+            font-family: cursive;
+            padding: 28px 7px;
+            margin: 30px 9px;
+            font-size: 27px;
+        }
+
+        p {
+            font-size: 49px;
+            text-align: left;
+            margin: -28px -40px;
+        }
+
+        #made {
+            font-size: 50px;
+            font-family: cursive;
+            color: white;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 480px) {
+            /* body {
+                background-color: brown;
+            } */
+
+            .container {
+                text-align: center;
+                justify-content: center;
+                margin: 70px 18px;
+                width: 32%;
+            }
+
+            h3 {
+                /* font-size: 15px; */
+                /* font-size: 17px;
+                padding: -7px 2px;
+                margin: -14px -48px; */
+                font-size: 15px;
+                font-size: 16px;
+                padding: -7px 2px;
+                margin: -18px -56px;
+            }
+
+
+            h2 {
+
+                font-size: 20px;
+                margin: 22px -69px;
+                padding: 15px 4px;
+            }
+
+
+            #emogi {
+             
+                font-size: 30px;
+                margin: -28px -79px;
+                padding: -5px -14px;
+                justify-content: left;
+            }
+
+            #jokebtn {
+
+                font-size: 19px;
+                width: 135px;
+                margin: -18px -14px;
+
+            }
+
+            #made {
+                font-size: 25px;
+                font-family: cursive;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <marquee id="made">Created By Prem Kumar</marquee>
+    <div class="container">
+
+        <p id="emogi">&#128525;</p>
+        <h3 id="heading">
+            Best Jokes ato make your day
+        </h3>
+
+
+        <h2 id="joke" class="joke">Awesome Joke is loading......</h2>
+        <button id="jokebtn" class="btn">Next Joke</button>
+    </div>
+    <script>
+        const jokes = document.querySelector('#joke');
+        const jokebtn = document.querySelector('#jokebtn');
+
+        const generatejokes = async () => {
+            try {
+                const setHeader = {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                }
+                const res = await fetch('https://icanhazdadjoke.com', setHeader)
+                const data = await res.json();
+                jokes.innerHTML = data.joke;
+                // jokes.container.innnerheight = 609px
+            } catch (err) {
+                console.log(`the error is ${err}`);
+            }
+
+        }
+        jokebtn.addEventListener('click', generatejokes);
+        generatejokes();
+    </script>
+</body>
+
+</html>
